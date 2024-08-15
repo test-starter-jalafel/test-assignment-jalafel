@@ -13,17 +13,15 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    - name: test
-      id: test
-      uses: classroom-resources/autograding-command-grader@v1
+    - name: asdf
+      id: asdf
+      uses: classroom-resources/autograding-python-grader@v1
       with:
-        test-name: test
-        setup-command: ''
-        command: gradle test
         timeout: 10
+        setup-command: ''
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
-        TEST_RESULTS: "${{steps.test.outputs.result}}"
+        ASDF_RESULTS: "${{steps.asdf.outputs.result}}"
       with:
-        runners: test
+        runners: asdf
