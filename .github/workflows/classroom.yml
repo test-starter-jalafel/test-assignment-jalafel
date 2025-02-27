@@ -23,6 +23,6 @@ jobs:
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
-        ASDF_RESULTS: "${{steps.python.outputs.result}}"
+        ASDF_RESULTS: "${{steps.rust.outputs.result}}"
       with:
-        runners: python
+        runners: rust
