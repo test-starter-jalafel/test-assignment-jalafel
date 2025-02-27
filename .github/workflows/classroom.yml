@@ -20,6 +20,20 @@ jobs:
           timeout: 10
           setup-command: ""
           max-score: 1
+      - name: Decode and assert python-test
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ github.token || 'act' }}
+          script: |
+            // Decode the Base64 output
+            const decodedResult = Buffer.from("${{ steps.rust.outputs.result }}", 'base64').toString('utf8');
+            console.log(`Decoded Result: ${decodedResult}`);
+            const json = JSON.parse(decodedResult)
+            if ( !json["version"] ||
+                 !json["status"] ||
+                 !json["tests"][0]["name"]) {
+              throw new Error(`Assertion failed. Expected version, status, and test name to exist, but got '${decodedResult}'`);
+            }
       - name: Autograding Reporter
         uses: classroom-resources/autograding-grading-reporter@v1
         env:
