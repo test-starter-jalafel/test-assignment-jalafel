@@ -15,7 +15,7 @@ jobs:
       uses: actions/checkout@v4
     - name: rust
       id: rust
-      uses: test-starter-jalafel/rust-grader@main
+      uses: test-starter-jalafel/rust-grader/action.yml@main
       with:
         timeout: 10
         setup-command: ''
