@@ -20,7 +20,7 @@ jobs:
           timeout: 10
           setup-command: ""
           max-score: 1
-      - name: Decode and assert python-test
+      - name: Decode and assert rust-test
         uses: actions/github-script@v6
         with:
           github-token: ${{ github.token || 'act' }}
@@ -28,6 +28,8 @@ jobs:
             // Decode the Base64 output
             const decodedResult = Buffer.from("${{ steps.rust.outputs.result }}", 'base64').toString('utf8');
             console.log(`Decoded Result: ${decodedResult}`);
+            const encodedResult = "${{ steps.rust.outputs.result }}"
+            console.log(`Encoded results: ${encodedResult}`)
             const json = JSON.parse(decodedResult)
             if ( !json["version"] ||
                  !json["status"] ||
