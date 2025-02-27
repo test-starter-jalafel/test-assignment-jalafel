@@ -1,7 +1,7 @@
 name: Autograding Tests
-'on':
-- push
-- repository_dispatch
+"on":
+  - push
+  - repository_dispatch
 permissions:
   checks: write
   actions: read
@@ -11,18 +11,18 @@ jobs:
     runs-on: ubuntu-latest
     if: github.actor != 'github-classroom[bot]'
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-    - name: rust
-      id: rust
-      uses: test-starter-jalafel/rust-grader@main
-      with:
-        timeout: 10
-        setup-command: ''
-        max-score: 100
-    - name: Autograding Reporter
-      uses: classroom-resources/autograding-grading-reporter@v1
-      env:
-        RUST_RESULTS: "${{steps.rust.outputs.result}}"
-      with:
-        runners: rust
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: rust
+        id: rust
+        uses: test-starter-jalafel/rust-grader@main
+        with:
+          timeout: 10
+          setup-command: ""
+          max-score: 1
+      - name: Autograding Reporter
+        uses: classroom-resources/autograding-grading-reporter@v1
+        env:
+          RUST_RESULTS: "${{steps.rust.outputs.result}}"
+        with:
+          runners: rust
