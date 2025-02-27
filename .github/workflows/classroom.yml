@@ -13,8 +13,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    - name: asdf
-      id: asdf
+    - name: python
+      id: python
       uses: classroom-resources/autograding-python-grader@v1
       with:
         timeout: 10
@@ -23,6 +23,6 @@ jobs:
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
-        ASDF_RESULTS: "${{steps.asdf.outputs.result}}"
+        ASDF_RESULTS: "${{steps.python.outputs.result}}"
       with:
-        runners: asdf
+        runners: python
