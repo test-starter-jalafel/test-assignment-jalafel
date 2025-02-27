@@ -13,9 +13,9 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    - name: python
-      id: python
-      uses: classroom-resources/autograding-python-grader@v1
+    - name: rust
+      id: rust
+      uses: test-starter-jalafel/rust-grader@main
       with:
         timeout: 10
         setup-command: ''
